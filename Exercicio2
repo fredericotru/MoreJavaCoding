@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        double hp;
+        double lp;
+        double ha;
+        double la;
+        double azunesc;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite a largura da parede: (EM Centimetros)");
+        lp = scanner.nextDouble();
+        System.out.println("Digite a altura da parede: (EM Centimetros)");
+        hp = scanner.nextDouble();
+        System.out.println("Digite a altura do azulejo: (EM centimetros)");
+        ha = scanner.nextDouble();
+        System.out.println("Digite a largura do azulejo: (Em centimetros)");
+        la = scanner.nextDouble();
+        azunesc = (hp * lp) / (ha * la);
+
+        System.out.printf("Você vai precisar de %.0f azulejos%n", Math.ceil(azunesc));
+
+        scanner.close();
+    }
+}
