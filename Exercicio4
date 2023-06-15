@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] candidatos = new String[5];
+        int[] votos = new int[5];
+
+        
+        cadastrarCandidatos(candidatos);
+
+        
+        int numeroCandidato;
+        int totalVotos = 0;
+
+        System.out.println("Digite o número do candidato para votar (ou 0 para encerrar a votação):");
+        while (true) {
+            numeroCandidato = scanner.nextInt();
+
+            if (numeroCandidato == 0) {
+                break;
+            }
+
+            if (numeroCandidato >= 1 && numeroCandidato <= 5) {
+                votos[numeroCandidato - 1]++;
+                totalVotos++;
+            } else {
+                System.out.println("Número de candidato inválido. Tente novamente.");
+            }
+        }
+
+        int maiorVotos = 0;
+        int candidatoVencedor = 0;
+        int candidatoSegundoLugar = 0;
+
+        for (int i = 0; i < votos.length; i++) {
+            int votosCandidato = votos[i];
+
+            if (votosCandidato > maiorVotos) {
+                maiorVotos = votosCandidato;
+                candidatoVencedor = i + 1;
+                candidatoSegundoLugar = 0; 
+            } else if (votosCandidato == maiorVotos) {
+                candidatoSegundoLugar = i + 1;
+            }
+        }
+
+        if (maiorVotos > totalVotos / 2) {
+            System.out.println("O candidato " + candidatos[candidatoVencedor - 1] + " venceu a eleição com " + maiorVotos + " votos.");
+        } else {
+            System.out.println("Nenhum candidato obteve mais de 50% dos votos. Haverá outra votação entre os candidatos " +
+                    candidatos[candidatoVencedor - 1] + " e " + candidatos[candidatoSegundoLugar - 1] + ".");
+        }
+    }
+
+    private static void cadastrarCandidatos(String[] candidatos) {
+        candidatos[0] = "Candidato 1";
+        candidatos[1] = "Candidato 2";
+        candidatos[2] = "Candidato 3";
+        candidatos[3] = "Candidato 4";
+        candidatos[4] = "Candidato 5";
+    }
+}
