@@ -1,0 +1,145 @@
+package com.fredericotru.gestaocontabancaria;
+import java.util.Scanner;
+import java.util.UUID;
+
+
+public class ContaBancaria {
+    private double saldo = 0;
+    private int ag;    
+    private int nConta;    
+    private String senha;    
+    private int numBanco;
+    private double cpf;
+    private String token;
+    private String email;
+    private String name;
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public double getSaldo() {
+        return this.saldo;
+    }
+    
+    public void setName(String nome) {
+        this.name = nome;
+    }
+
+    public void fazerDeposito(double deposito){
+        this.saldo = this.saldo + deposito;
+    }
+
+    public void fazerSaque(double saque){
+        if(saque < this.saldo){
+            this.saldo = this.saldo - saque;
+            System.out.print("Você sacou: " + this.saldo);
+        }else {
+            System.out.print(erroDinheiro());
+        }
+    }
+
+    public String erroDinheiro() {
+        return "Você não tem dinheiro suficiente para fazer o saque.";
+    }
+    
+    public void iniciaCadastro() {
+        UUID uuid = UUID.randomUUID();
+        String randomAlfanumeric = uuid.toString();    
+
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Bom, vamos ao seu cadastro:");
+        System.out.println("Nome:");
+        this.name = teclado.nextLine();
+        
+        //gere a agencia aleatoriamente    
+        this.ag = (int) (Math.random() * 1000); 
+        
+        //gera a conta aleatoriamente;
+        this.nConta = (int) (Math.random() * 10000); 
+        
+        System.out.println("Digite a sua senha: ");
+        this.senha = teclado.next();    
+        
+        //gere o numero aleatoriamente;
+        this.numBanco = (int) (Math.random() * 100); 
+        
+        System.out.println("Digite o seu CPF (Sem traço): ");
+        this.cpf = teclado.nextDouble();
+        
+        //Gera um alfanumerico de 128 bit com 20 posições
+        this.token = randomAlfanumeric.substring(0,20); 
+
+        System.out.println("Digite o seu email: ");
+        this.email = teclado.next();
+    }
+
+    public void getDados() {
+        System.out.println("seus dados são: ");
+        System.out.println("Nome: " + this.name);
+        System.out.println("Número do banco: " + this.numBanco);
+        System.out.println("Agência: " + this.ag);
+        System.out.println("Número da conta: " + this.nConta);
+        System.out.println("Email: " + this.email);
+        System.out.println("Senha: " + this.senha);
+        System.out.println("CPF: " + this.cpf);
+        System.out.println("Token: " + this.token);
+    }
+    
+}
+----------------------------------------
+package com.fredericotru.gestaocontabancaria;
+
+import java.util.Scanner;
+
+public class GestaoContaBancaria {
+
+	public static void main(String[] args) {
+		Scanner teclado = new Scanner(System.in);
+		int opcao = 0;
+		double saldo;
+		ContaBancaria contaBancaria = new ContaBancaria();
+		System.out.print("Olá, vamos fazer um cadastro no nosso banco?");
+		System.out.print(" 1 Sim;");
+		System.out.println(" ) Não;");
+		opcao = teclado.nextInt();
+
+		if(opcao == 1) {
+			contaBancaria.iniciaCadastro();
+		} else {
+			System.out.println("OK! Obrigado pela atenção!!");
+		}
+
+		if(opcao != 2){ 
+			while (true) {
+				System.out.println("Qual operação deseja fazer ?");
+				System.out.println("2 -> Depósito.");
+				System.out.println("3 -> Ver dados.");
+				System.out.println("4 -> Saque.");
+				System.out.println("5 -> Ver saldo.");
+				opcao = teclado.nextInt();
+			
+				if(opcao == 2) {
+					System.out.print("Digite o valor que queira depositar: ");
+					saldo = teclado.nextDouble();
+					contaBancaria.fazerDeposito(saldo);
+				} else if (opcao ==  3) {
+					contaBancaria.getDados();
+				} else if (opcao ==  4) {
+					System.out.print("Digite o valor que queira sacar: ");
+					saldo = teclado.nextDouble();
+					contaBancaria.fazerSaque(saldo);
+				} else if (opcao == 5) {
+					System.out.println("Seu sald é " + contaBancaria.getSaldo());
+				}
+			}
+		}
+
+
+	}
+
+}
+
+
+
+    
