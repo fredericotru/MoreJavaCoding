@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String nome;
+        double media = 0; 
+        double n1;
+        double n2;
+        double n3;
+        double n4;
+        double n5;
+          
+        System.out.print("Digite o nome do aluno: ");
+        nome = scanner.nextLine();
+
+        System.out.print("Digite primeira nota do aluno ");
+        n1 = scanner.nextDouble();
+
+        System.out.print("Digite a segunda nota do aluno: ");
+        n2 = scanner.nextDouble();
+
+        System.out.print("Digite a terceira nota do aluno: ");
+        n3 = scanner.nextDouble();
+
+        System.out.print("Digite a quarta nota do aluno: ");
+        n4 = scanner.nextDouble();
+
+        System.out.print("Digite a quinta nota do aluno: ");
+        n5 = scanner.nextDouble();
+        
+        media = n1 + n2 + n3 + n4 + n5 / 5;
+       
+        String situacao;
+                
+        if (media >= 60) {
+            situacao = "Aprovado";
+        } else if (media < 40) {
+            situacao = "Reprovado";
+        } else {
+            situacao = "Recuperação";
+        }
+
+        System.out.println("Situação do aluno: " + situacao);
+    }
+}
