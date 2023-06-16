@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+class Main {
+  public static void main(String[] args) {
+    int tamanho;
+    int[][] matriz1;
+    int[][] matriz2;
+    int[][] matriz123;
+
+    Scanner scanner = new Scanner(System.in);
+
+    System.out.print("Digite o tamanho das matrizes quadradas: ");
+    tamanho = scanner.nextInt();
+
+    matriz1 = new int[tamanho][tamanho];
+    matriz2 = new int[tamanho][tamanho];
+    matriz123 = new int[tamanho][tamanho];
+
+    preencherMatriz(matriz1, scanner);
+
+    preencherMatriz(matriz2, scanner);
+
+    for (int i = 0; i < tamanho; i++) {
+      for (int j = 0; j < tamanho; j++) {
+        matriz123[i][j] = matriz1[i][j] + matriz2[i][j];
+      }
+    }
+
+    exibirMatriz(matriz123);
+
+  }
+
+  public static void preencherMatriz(int[][] matriz, Scanner scanner) {
+    int tamanho = matriz.length;
+
+    for (int i = 0; i < tamanho; i++) {
+      for (int j = 0; j < tamanho; j++) {
+        matriz[i][j] = scanner.nextInt();
+      }
+    }
+  }
+
+  public static void exibirMatriz(int[][] matriz) {
+    int tamanho = matriz.length;
+
+    for (int i = 0; i < tamanho; i++) {
+      for (int j = 0; j < tamanho; j++) {
+        System.out.print(matriz[i][j] + " ");
+      }
+      System.out.println();
+    }
+  }
+}
