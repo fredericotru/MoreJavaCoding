@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+class Main {
+  public static void main(String[] args) {
+    int quantidadeAlunos;
+    double[] notas;
+    double soma = 0;
+    double media;
+
+    Scanner scanner = new Scanner(System.in);
+
+    System.out.print("Digite a quantidade de alunos na turma: ");
+    quantidadeAlunos = scanner.nextInt();
+
+    notas = new double[quantidadeAlunos];
+
+    for (int i = 0; i < quantidadeAlunos; i++) {
+      System.out.print("Digite a nota do aluno " + (i + 1) + ": ");
+      notas[i] = scanner.nextDouble();
+      soma += notas[i];
+    }
+
+    media = soma / quantidadeAlunos;
+
+    System.out.println("Média das notas: " + media);
+
+  }
+}
