@@ -23,6 +23,5 @@ class Main {
     media = soma / quantidadeAlunos;
 
     System.out.println("Média das notas: " + media);
-
   }
 }
